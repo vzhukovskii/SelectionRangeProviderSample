@@ -24,17 +24,12 @@ export function start(context: theia.PluginContext): void {
 
     const disposable = theia.languages.registerSelectionRangeProvider('*', {
         provideSelectionRanges: (document, positions) => {
-            console.log('SelectionProvider document: ' + JSON.stringify(document, undefined, 2));
-            console.log('SelectionProvider positions: ' + JSON.stringify(positions, undefined, 2));
-
             const result: theia.SelectionRange[] = [];
 
             for (const position of positions) {
                 const range = document.getWordRangeAtPosition(position, lookup);
 
                 if (!range) { continue; }
-
-                console.log('SelectionRangeProvider range: ' + JSON.stringify(range, undefined, 2));
 
                 if (range.start.character <= position.character && range.end.character >= position.character) {
                     result.push({
@@ -45,8 +40,6 @@ export function start(context: theia.PluginContext): void {
                     });
                 }
             }
-
-            console.log('SelectionRangeProvider result range: ' + JSON.stringify(result, undefined, 2));
 
             return result;
         }
