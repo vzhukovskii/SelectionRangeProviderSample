@@ -1,0 +1,49 @@
+{
+    "name": "@eclipse-che/selection-range-provider-sample",
+    "version": "7.9.2",
+    "publisher": "Eclipse Che",
+    "keywords": [
+        "theia-plugin"
+    ],
+    "description": "Selection Range Sample Plugin",
+    "license": "EPL-2.0",
+    "files": [
+        "src",
+        "resources"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "devDependencies": {
+        "@theia/plugin": "0.16.0-next.1eaecd5c",
+        "@theia/plugin-packager": "latest",
+        "rimraf": "2.6.2",
+        "eslint": "^6.8.0",
+        "eslint-plugin-import": "2.20.2",
+        "eslint-plugin-no-null": "1.0.2",
+        "eslint-plugin-sonarjs": "0.5.0",
+        "@typescript-eslint/parser": "2.26.0",
+        "tslint": "6.1.1",
+        "@typescript-eslint/eslint-plugin": "2.26.0",
+        "@typescript-eslint/eslint-plugin-tslint": "2.26.0",
+        "typescript": "~3.5.3",
+        "typescript-formatter": "7.2.2",
+        "concurrently": "^3.5.0"
+    },
+    "scripts": {
+        "prepare": "yarn run clean && yarn run build",
+        "clean": "rimraf lib",
+        "format": "tsfmt -r --useTsfmt tsfmt.json",
+        "lint": "eslint --cache=true --no-error-on-unmatched-pattern=true \"{src,test}/**/*.{ts,tsx}\"",
+        "lint:fix": "eslint --fix --cache=true --no-error-on-unmatched-pattern=true \"{src,test}/**/*.{ts,tsx}\"",
+        "compile": "tsc",
+        "build": "yarn lint:fix && concurrently -n \"format,lint,compile\" -c \"red,green,blue\" \"yarn format\" \"yarn lint\" \"yarn compile\" && theia-plugin pack",
+        "watch": "tsc -w"
+    },
+    "engines": {
+        "theiaPlugin": "next"
+    },
+    "theiaPlugin": {
+        "backend": "lib/sample.js"
+    }
+}
