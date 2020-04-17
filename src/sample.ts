@@ -13,13 +13,6 @@
 import * as theia from '@theia/plugin';
 
 export function start(context: theia.PluginContext): void {
-    theia.commands.registerCommand({
-        id: 'my-command-id',
-        label: 'My Command'
-    }, () => {
-        theia.window.showInformationMessage('some message');
-    });
-
     const lookup = new RegExp('{SHOULD_BE_SELECTED}(.*){\/SHOULD_BE_SELECTED}');
 
     const disposable = theia.languages.registerSelectionRangeProvider('*', {
