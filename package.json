@@ -1,6 +1,6 @@
 {
     "name": "@eclipse-che/selection-range-provider-sample",
-    "version": "7.9.2",
+    "version": "0.0.1",
     "publisher": "Eclipse Che",
     "keywords": [
         "theia-plugin"
